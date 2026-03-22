@@ -26,7 +26,7 @@ export default async function handler(req, res) {
           "hook_rate": 42.1,
           "performance": "trending"
         },
-        "imageUrl": "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?q=80&w=1000&auto=format&fit=crop&ar=16:9"
+        "imageUrl": "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?q=80&w=1000&auto=format&fit=max&ar=16:9"
       },
       {
         "id": 1695222000000,
@@ -49,7 +49,7 @@ export default async function handler(req, res) {
           "hook_rate": 18.5,
           "performance": "underperforming"
         },
-        "imageUrl": "https://images.unsplash.com/photo-1556742044-3c52d6e88c02?q=80&w=1000&auto=format&fit=crop&ar=16:9"
+        "imageUrl": "https://images.unsplash.com/photo-1556742044-3c52d6e88c02?q=80&w=1000&auto=format&fit=max&ar=16:9"
       },
       {
         "id": 1695221000000,
@@ -72,7 +72,7 @@ export default async function handler(req, res) {
           "hook_rate": 65.2,
           "performance": "trending"
         },
-        "imageUrl": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1000&auto=format&fit=crop&ar=16:9"
+        "imageUrl": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1000&auto=format&fit=max&ar=16:9"
       }
     ]);
     return;

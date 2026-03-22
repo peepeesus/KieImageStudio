@@ -1412,13 +1412,11 @@ body.view-gallery .view-container {
   font-weight: 500;
 }
 
-/* Image Display Fix - Ensure "whole" images */
-.cell-preview { width: 240px; }
+/* Image Display Fix V2 - Ensure "whole" images without cropping */
+.cell-preview { width: 300px; }
 .cell-preview .large-preview {
-  aspect-ratio: 16 / 9;
   width: 100%;
-  height: auto !important;
-  max-height: 135px; /* (240px * 9/16) */
+  height: 168px; /* (300px * 9/16) - Fixed height container */
   background: #111214;
   border-radius: 4px;
   overflow: hidden;
@@ -1428,9 +1426,11 @@ body.view-gallery .view-container {
 }
 
 .large-preview img, .large-preview video {
-  width: 100%;
-  height: 100%;
-  object-fit: contain; /* FIX: ensures image is whole and uncropped */
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain; /* ensures image is whole and uncropped */
   transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -1444,7 +1444,7 @@ body.view-gallery .view-container {
 
 .airtable-grid {
   display: inline-block;
-  min-width: 4400px; /* Increased to accommodate new columns */
+  min-width: 4600px; /* Adjusted for wider preview cells */
   background: #1d1f22;
 }
 
