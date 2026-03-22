@@ -1,4 +1,5 @@
 {
+  "name": "kie-image-studio",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "framework": "vite",

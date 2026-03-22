@@ -38,9 +38,27 @@ export function renderGallery(container) {
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
                 <span>Hide fields</span>
             </div>
-            <div class="toolbar-item">
+            <div class="toolbar-item filter-btn" id="filter-trigger">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>
-                <span>Filtered by filter</span>
+                <span>Filter</span>
+                <div id="filter-dropdown" class="filter-dropdown">
+                    <div class="filter-section">
+                        <div class="filter-section-title">Customer Avatar</div>
+                        <div class="filter-option" data-type="avatar" data-value="all">All Avatars</div>
+                        <div class="filter-option" data-type="avatar" data-value="Nora">Nora</div>
+                        <div class="filter-option" data-type="avatar" data-value="Elias">Elias</div>
+                        <div class="filter-option" data-type="avatar" data-value="Jordan">Jordan</div>
+                    </div>
+                    <div class="filter-divider"></div>
+                    <div class="filter-section">
+                        <div class="filter-section-title">Platform</div>
+                        <div class="filter-option" data-type="platform" data-value="all">All Platforms</div>
+                        <div class="filter-option" data-type="platform" data-value="Facebook">Facebook</div>
+                        <div class="filter-option" data-type="platform" data-value="Instagram">Instagram</div>
+                        <div class="filter-option" data-type="platform" data-value="TikTok">TikTok</div>
+                        <div class="filter-option" data-type="platform" data-value="Reddit">Reddit</div>
+                    </div>
+                </div>
             </div>
             <div class="toolbar-item">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10H3M21 6H3M21 14H3M21 18H3"/></svg>
@@ -80,9 +98,54 @@ export function renderGallery(container) {
     `;
 
     loadGalleryData();
+    setupFilters();
 }
 
 let galleryItems = [];
+let activeFilters = {
+    avatar: 'all',
+    platform: 'all'
+};
+
+function setupFilters() {
+    const trigger = document.getElementById('filter-trigger');
+    const dropdown = document.getElementById('filter-dropdown');
+    
+    if (!trigger || !dropdown) return;
+
+    trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdown.classList.toggle('show');
+    });
+
+    document.addEventListener('click', () => {
+        dropdown.classList.remove('show');
+    });
+
+    dropdown.querySelectorAll('.filter-option').forEach(option => {
+        option.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const { type, value } = option.dataset;
+            activeFilters[type] = value;
+            
+            // Highlight selected
+            dropdown.querySelectorAll(`.filter-option[data-type="${type}"]`).forEach(opt => opt.classList.remove('active'));
+            option.classList.add('active');
+            
+            applyFilters();
+            dropdown.classList.remove('show');
+        });
+    });
+}
+
+function applyFilters() {
+    const filtered = galleryItems.filter(item => {
+        const matchAvatar = activeFilters.avatar === 'all' || item.avatar === activeFilters.avatar;
+        const matchPlatform = activeFilters.platform === 'all' || item.platform === activeFilters.platform;
+        return matchAvatar && matchPlatform;
+    });
+    renderGridRows(filtered);
+}
 
 async function loadGalleryData() {
     try {

@@ -1263,6 +1263,65 @@ body.view-gallery .view-container {
   white-space: nowrap;
 }
 
+/* ---- Filter Dropdown ---- */
+.filter-btn {
+  position: relative;
+}
+
+.filter-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 200px;
+  background: #1d1f22;
+  border: 1px solid #26272b;
+  border-radius: 6px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  display: none;
+  z-index: 100;
+  padding: 8px 0;
+  margin-top: 4px;
+}
+
+.filter-dropdown.show {
+  display: block;
+}
+
+.filter-section-title {
+  padding: 8px 16px 4px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #6e6e6e;
+  letter-spacing: 0.5px;
+}
+
+.filter-option {
+  padding: 8px 16px;
+  font-size: 12px;
+  color: #e2e2e3;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-option:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+}
+
+.filter-option.active {
+  color: #ed0670;
+  font-weight: 600;
+}
+
+.filter-divider {
+  height: 1px;
+  background: #26272b;
+  margin: 8px 0;
+}
+
 /* Prompt Overlay (Screenshot Style) */
 .prompt-overlay {
   position: fixed;
@@ -1281,4 +1340,21 @@ body.view-gallery .view-container {
   pointer-events: none;
   white-space: pre-wrap;
   overflow-y: auto;
+}
+
+/* Ensure consistent aspect ratio in gallery items */
+.cell-preview .large-preview {
+  aspect-ratio: 16 / 9;
+  height: auto !important;
+  max-height: 135px; /* (240px width * 9/16) */
+}
+
+.grid-row {
+  height: auto !important; /* Allow row to adjust to image height */
+  min-height: 180px;
+}
+
+.grid-cell {
+  height: auto !important;
+  padding: 12px;
 }
