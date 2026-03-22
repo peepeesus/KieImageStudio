@@ -1391,11 +1391,61 @@ body.view-gallery .view-container {
   padding-left: 16px;
 }
 
-/* Ensure consistent aspect ratio in gallery items */
+/* Metrics Column widths - NEW ORDER */
+.cell-spend { width: 100px; }
+.cell-roas { width: 80px; }
+.cell-revenue { width: 120px; }
+.cell-reach { width: 100px; }
+.cell-impressions { width: 120px; }
+.cell-cpm { width: 80px; }
+.cell-ctr { width: 80px; }
+.cell-days { width: 100px; }
+.cell-launch { width: 120px; }
+
+.cell-roas .metric-value {
+  font-weight: 700;
+  color: #85ebad;
+}
+
+.cell-spend .metric-value, .cell-revenue .metric-value {
+  color: #fff;
+  font-weight: 500;
+}
+
+/* Image Display Fix - Ensure "whole" images */
+.cell-preview { width: 240px; }
 .cell-preview .large-preview {
   aspect-ratio: 16 / 9;
+  width: 100%;
   height: auto !important;
-  max-height: 135px; /* (240px width * 9/16) */
+  max-height: 135px; /* (240px * 9/16) */
+  background: #111214;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.large-preview img, .large-preview video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* FIX: ensures image is whole and uncropped */
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.large-preview:hover img {
+  transform: scale(1.02);
+}
+
+.cell-prompt { width: 350px; }
+.cell-model { width: 140px; }
+.cell-date { width: 120px; }
+
+.airtable-grid {
+  display: inline-block;
+  min-width: 4400px; /* Increased to accommodate new columns */
+  background: #1d1f22;
 }
 
 .grid-row {

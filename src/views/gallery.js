@@ -100,15 +100,16 @@ export function renderGallery(container) {
                     <div class="grid-header cell-status-label">Status</div>
                     <div class="grid-header cell-avatar">Actor</div>
                     <div class="grid-header cell-platform">Platform</div>
-                    
                     <div class="grid-header cell-performance">Sentiment</div>
-                    <div class="grid-header cell-roas">ROAS</div>
+                    
+                    <!-- NEW ORDER: Spend -> ROAS -> Revenue -> Reach -> Impressions -> CPM -> CTR -> Days Running -> Launch Date -->
                     <div class="grid-header cell-spend">Spend</div>
+                    <div class="grid-header cell-roas">ROAS</div>
                     <div class="grid-header cell-revenue">Revenue</div>
-                    <div class="grid-header cell-ctr">CTR %</div>
-                    <div class="grid-header cell-cpm">CPM $</div>
                     <div class="grid-header cell-reach">Reach</div>
                     <div class="grid-header cell-impressions">Impressions</div>
+                    <div class="grid-header cell-cpm">CPM $</div>
+                    <div class="grid-header cell-ctr">CTR %</div>
                     <div class="grid-header cell-days">Days Running</div>
                     <div class="grid-header cell-launch">Launch Date</div>
 
@@ -246,7 +247,6 @@ function renderRowHtml(item, index, total) {
     const perfClass = metrics.performance === 'trending' ? 'pill-trending' : 'pill-underperforming';
     const dateStr = item.timestamp ? new Date(item.timestamp).toLocaleDateString() : 'Mar 21, 2026';
     
-    // Launch Date and Days Running
     const launchDate = metrics.launch_date ? new Date(metrics.launch_date) : new Date(item.timestamp);
     const launchStr = launchDate.toLocaleDateString();
     const daysRunning = Math.floor((new Date() - launchDate) / (1000 * 60 * 60 * 24));
@@ -258,17 +258,18 @@ function renderRowHtml(item, index, total) {
             <div class="grid-cell cell-status-label"><span class="status-pill pill-ready">Live</span></div>
             <div class="grid-cell cell-avatar"><span class="avatar-pill pill-blue">${item.avatar || 'Nora'}</span></div>
             <div class="grid-cell cell-platform"><span class="platform-pill pill-dark">${item.platform || 'Meta'}</span></div>
-            
             <div class="grid-cell cell-performance">
                 <span class="status-pill ${perfClass}">${metrics.performance === 'trending' ? 'Trending' : 'Scaling'}</span>
             </div>
-            <div class="grid-cell cell-roas"><span class="metric-value" style="color: #85ebad">${metrics.roas}x</span></div>
+
+            <!-- NEW ORDER: Spend -> ROAS -> Revenue -> Reach -> Impressions -> CPM -> CTR -> Days Running -> Launch Date -->
             <div class="grid-cell cell-spend"><span class="metric-value">$${Number(metrics.spend).toLocaleString()}</span></div>
+            <div class="grid-cell cell-roas"><span class="metric-value" style="color: #85ebad">${metrics.roas}x</span></div>
             <div class="grid-cell cell-revenue"><span class="metric-value">$${Number(metrics.revenue).toLocaleString()}</span></div>
-            <div class="grid-cell cell-ctr"><span class="metric-value">${metrics.ctr}%</span></div>
-            <div class="grid-cell cell-cpm"><span class="metric-value">$${metrics.cpm}</span></div>
             <div class="grid-cell cell-reach"><span class="metric-value">${Number(metrics.reach).toLocaleString()}</span></div>
             <div class="grid-cell cell-impressions"><span class="metric-value">${Number(metrics.impressions).toLocaleString()}</span></div>
+            <div class="grid-cell cell-cpm"><span class="metric-value">$${metrics.cpm}</span></div>
+            <div class="grid-cell cell-ctr"><span class="metric-value">${metrics.ctr}%</span></div>
             <div class="grid-cell cell-days"><span class="metric-value">${daysRunning}d</span></div>
             <div class="grid-cell cell-launch">${launchStr}</div>
 
