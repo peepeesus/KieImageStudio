@@ -1175,8 +1175,8 @@ body.view-gallery .view-container {
 /* Strict Widths to prevent table collapse - !important enforced */
 .cell-checkbox { width: 44px !important; min-width: 44px !important; max-width: 44px !important; text-align: center; vertical-align: middle; }
 .cell-id { width: 60px !important; min-width: 60px !important; max-width: 60px !important; color: #5e6066; font-family: var(--font-mono); font-size: 11px; text-align: center; vertical-align: middle; }
-.cell-avatar { width: 140px !important; min-width: 140px !important; max-width: 140px !important; vertical-align: middle; }
-.cell-platform { width: 140px !important; min-width: 140px !important; max-width: 140px !important; vertical-align: middle; }
+.cell-avatar { width: 140px !important; min-width: 140px !important; max-width: 140px !important; vertical-align: top; }
+.cell-platform { width: 140px !important; min-width: 140px !important; max-width: 140px !important; vertical-align: top; }
 .cell-preview { width: 240px !important; min-width: 240px !important; max-width: 240px !important; }
 
 /* Pills */
@@ -1191,9 +1191,9 @@ body.view-gallery .view-container {
   line-height: 1.4;
   word-break: break-word;
 }
-.cell-model { width: 160px !important; min-width: 160px !important; max-width: 160px !important; vertical-align: middle; }
-.cell-status { width: 160px !important; min-width: 160px !important; max-width: 160px !important; vertical-align: middle; }
-.cell-date { width: 180px !important; min-width: 180px !important; max-width: 180px !important; color: #8a8a8a; vertical-align: middle; }
+.cell-model { width: 160px !important; min-width: 160px !important; max-width: 160px !important; vertical-align: top; }
+.cell-status { width: 160px !important; min-width: 160px !important; max-width: 160px !important; vertical-align: top; }
+.cell-date { width: 180px !important; min-width: 180px !important; max-width: 180px !important; color: #8a8a8a; vertical-align: top; }
 
 /* Large Previews */
 .large-preview {
