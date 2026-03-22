@@ -14,6 +14,14 @@ export default async function handler(req, res) {
         "type": "image",
         "avatar": "Nora",
         "platform": "Instagram",
+        "metrics": {
+          "ctr": 3.42,
+          "cpm": 12.50,
+          "aov": 145.00,
+          "hook_rate": 42.1,
+          "spend": 1240.00,
+          "performance": "trending"
+        },
         "imageUrl": "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?q=80&w=1000&auto=format&fit=crop&ar=16:9"
       },
       {
@@ -25,7 +33,34 @@ export default async function handler(req, res) {
         "type": "image",
         "avatar": "Elias",
         "platform": "Facebook",
+        "metrics": {
+          "ctr": 1.15,
+          "cpm": 28.40,
+          "aov": 89.00,
+          "hook_rate": 18.5,
+          "spend": 450.00,
+          "performance": "underperforming"
+        },
         "imageUrl": "https://images.unsplash.com/photo-1556742044-3c52d6e88c02?q=80&w=1000&auto=format&fit=crop&ar=16:9"
+      },
+      {
+        "id": 1695221000000,
+        "timestamp": "2026-03-21T12:00:00.000Z",
+        "prompt": "Jordan practicing with Erwaldo cards in a high-tech gym, dramatic lighting, 16:9 aspect ratio.",
+        "model": "nano-banana-2",
+        "status": "generated",
+        "type": "image",
+        "avatar": "Jordan",
+        "platform": "TikTok",
+        "metrics": {
+          "ctr": 5.80,
+          "cpm": 8.20,
+          "aov": 110.00,
+          "hook_rate": 65.2,
+          "spend": 3200.00,
+          "performance": "trending"
+        },
+        "imageUrl": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1000&auto=format&fit=crop&ar=16:9"
       }
     ]);
     return;

@@ -1347,6 +1347,35 @@ body.view-gallery .view-container {
   overflow-y: auto;
 }
 
+/* Metrics Columns */
+.cell-ctr { width: 100px !important; min-width: 100px !important; text-align: center; }
+.cell-cpm { width: 100px !important; min-width: 100px !important; text-align: center; }
+.cell-aov { width: 100px !important; min-width: 100px !important; text-align: center; }
+.cell-performance { width: 140px !important; min-width: 140px !important; }
+
+/* Metrics Pills */
+.metric-value { font-family: var(--font-mono); font-weight: 600; color: #fff; }
+.status-pill.pill-trending { background: #1a3221; color: #85ebad; border: 1px solid #244b31; }
+.status-pill.pill-underperforming { background: #321a1a; color: #eb8585; border: 1px solid #4b2424; }
+
+/* Grouped Headers */
+.grid-group-header {
+  display: table-row;
+  background: #1d1f22;
+  height: 38px;
+}
+
+.grid-group-header .grid-cell {
+  background: #111214;
+  height: 38px;
+  vertical-align: middle;
+  border-bottom: 2px solid #ed0670;
+  font-weight: 700;
+  font-size: 13px;
+  color: #fff;
+  padding-left: 16px;
+}
+
 /* Ensure consistent aspect ratio in gallery items */
 .cell-preview .large-preview {
   aspect-ratio: 16 / 9;
@@ -1362,4 +1391,12 @@ body.view-gallery .view-container {
 .grid-cell {
   height: auto !important;
   padding: 12px;
+}
+
+/* Filter Dropdown Extensions */
+.filter-dropdown strong {
+  display: block;
+  padding: 8px 16px;
+  font-size: 11px;
+  color: #ed0670;
 }
