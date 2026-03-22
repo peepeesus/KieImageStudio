@@ -1175,8 +1175,13 @@ body.view-gallery .view-container {
 /* Strict Widths to prevent table collapse - !important enforced */
 .cell-checkbox { width: 44px !important; min-width: 44px !important; max-width: 44px !important; text-align: center; vertical-align: middle; }
 .cell-id { width: 60px !important; min-width: 60px !important; max-width: 60px !important; color: #5e6066; font-family: var(--font-mono); font-size: 11px; text-align: center; vertical-align: middle; }
-.cell-status-label { width: 140px !important; min-width: 140px !important; max-width: 140px !important; vertical-align: middle; }
+.cell-avatar { width: 140px !important; min-width: 140px !important; max-width: 140px !important; vertical-align: middle; }
+.cell-platform { width: 140px !important; min-width: 140px !important; max-width: 140px !important; vertical-align: middle; }
 .cell-preview { width: 240px !important; min-width: 240px !important; max-width: 240px !important; }
+
+/* Pills */
+.avatar-pill.pill-blue { background: #1a2a3a; color: #a1d9ff; border: 1px solid #2a4a6a; border-radius: 4px; padding: 2px 8px; font-size: 11px; }
+.platform-pill.pill-dark { background: #1c1c1c; color: #dcdcdc; border: 1px solid #3c3c3c; border-radius: 4px; padding: 2px 8px; font-size: 11px; }
 .cell-prompt { width: 550px !important; min-width: 550px !important; max-width: 550px !important; position: relative; } 
 .cell-prompt .prompt-text {
   height: 204px !important;

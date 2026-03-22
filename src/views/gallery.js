@@ -80,6 +80,8 @@ export function renderGallery(container) {
                     <div class="grid-header cell-checkbox"><input type="checkbox"></div>
                     <div class="grid-header cell-id"># I...</div>
                     <div class="grid-header cell-status-label">Image Status</div>
+                    <div class="grid-header cell-avatar">Customer Avatar</div>
+                    <div class="grid-header cell-platform">Social Platform</div>
                     <div class="grid-header cell-preview">Generated Image 1</div>
                     <div class="grid-header cell-preview">Generated Image 2</div>
                     <div class="grid-header cell-prompt">Video Prompt</div>
@@ -180,6 +182,12 @@ function renderGridRows(items) {
                 <div class="grid-cell cell-id">${id}</div>
                 <div class="grid-cell cell-status-label">
                     <span class="status-pill pill-ready">Generated</span>
+                </div>
+                <div class="grid-cell cell-avatar">
+                    <span class="avatar-pill pill-blue">${item.avatar || 'N/A'}</span>
+                </div>
+                <div class="grid-cell cell-platform">
+                    <span class="platform-pill pill-dark">${item.platform || 'N/A'}</span>
                 </div>
                 <!-- Image 1 -->
                 <div class="grid-cell cell-preview">
