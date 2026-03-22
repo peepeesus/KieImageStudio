@@ -1347,10 +1347,25 @@ body.view-gallery .view-container {
   overflow-y: auto;
 }
 
+.airtable-grid {
+  display: table;
+  width: auto !important; /* Force width auto to honor min-width */
+  min-width: 4200px !important;
+  border-collapse: collapse;
+  table-layout: fixed !important;
+  background: #111214;
+}
+
 /* Metrics Columns */
+.cell-roas { width: 100px !important; min-width: 100px !important; text-align: center; }
+.cell-spend { width: 120px !important; min-width: 120px !important; text-align: center; }
+.cell-revenue { width: 140px !important; min-width: 140px !important; text-align: center; }
+.cell-reach { width: 120px !important; min-width: 120px !important; text-align: center; }
+.cell-impressions { width: 120px !important; min-width: 120px !important; text-align: center; }
+.cell-days { width: 100px !important; min-width: 100px !important; text-align: center; }
+.cell-launch { width: 140px !important; min-width: 140px !important; text-align: center; }
 .cell-ctr { width: 100px !important; min-width: 100px !important; text-align: center; }
 .cell-cpm { width: 100px !important; min-width: 100px !important; text-align: center; }
-.cell-aov { width: 100px !important; min-width: 100px !important; text-align: center; }
 .cell-performance { width: 140px !important; min-width: 140px !important; }
 
 /* Metrics Pills */

@@ -15,11 +15,15 @@ export default async function handler(req, res) {
         "avatar": "Nora",
         "platform": "Instagram",
         "metrics": {
+          "spend": 1240.00,
+          "roas": 4.25,
+          "revenue": 5270.00,
+          "reach": 42000,
+          "impressions": 58000,
+          "launch_date": "2026-03-15T09:00:00.000Z",
           "ctr": 3.42,
           "cpm": 12.50,
-          "aov": 145.00,
           "hook_rate": 42.1,
-          "spend": 1240.00,
           "performance": "trending"
         },
         "imageUrl": "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?q=80&w=1000&auto=format&fit=crop&ar=16:9"
@@ -34,11 +38,15 @@ export default async function handler(req, res) {
         "avatar": "Elias",
         "platform": "Facebook",
         "metrics": {
+          "spend": 450.00,
+          "roas": 1.20,
+          "revenue": 540.00,
+          "reach": 12000,
+          "impressions": 18500,
+          "launch_date": "2026-03-18T10:30:00.000Z",
           "ctr": 1.15,
           "cpm": 28.40,
-          "aov": 89.00,
           "hook_rate": 18.5,
-          "spend": 450.00,
           "performance": "underperforming"
         },
         "imageUrl": "https://images.unsplash.com/photo-1556742044-3c52d6e88c02?q=80&w=1000&auto=format&fit=crop&ar=16:9"
@@ -53,11 +61,15 @@ export default async function handler(req, res) {
         "avatar": "Jordan",
         "platform": "TikTok",
         "metrics": {
+          "spend": 3200.00,
+          "roas": 5.80,
+          "revenue": 18560.00,
+          "reach": 185000,
+          "impressions": 240000,
+          "launch_date": "2026-03-10T12:00:00.000Z",
           "ctr": 5.80,
           "cpm": 8.20,
-          "aov": 110.00,
           "hook_rate": 65.2,
-          "spend": 3200.00,
           "performance": "trending"
         },
         "imageUrl": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1000&auto=format&fit=crop&ar=16:9"

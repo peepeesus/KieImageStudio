@@ -35,7 +35,6 @@ export function renderGallery(container) {
             </div>
             <div class="toolbar-divider"></div>
 
-            <!-- Filter Dropdown (Avatar Focused) -->
             <div class="toolbar-item filter-btn" id="filter-trigger">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>
                 <span>Filter</span>
@@ -50,7 +49,6 @@ export function renderGallery(container) {
                 </div>
             </div>
 
-            <!-- Group Dropdown (Platform Focused) -->
             <div class="toolbar-item filter-btn" id="group-trigger">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10H3M21 6H3M21 14H3M21 18H3"/></svg>
                 <span>Group</span>
@@ -64,7 +62,6 @@ export function renderGallery(container) {
                 </div>
             </div>
 
-            <!-- Sort Dropdown (Performance Metrics) -->
             <div class="toolbar-item filter-btn" id="sort-trigger">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5M7 14l5 5 5-5"/></svg>
                 <span>Sort</span>
@@ -74,15 +71,16 @@ export function renderGallery(container) {
                         <div class="filter-option" data-type="sort" data-value="date">Created Date</div>
                         <div class="filter-divider"></div>
                         <div class="filter-section-title">Meta Ads Performance</div>
+                        <div class="filter-option" data-type="sort" data-value="roas">ROAS (High to Low)</div>
+                        <div class="filter-option" data-type="sort" data-value="spend">Ad Spend (High to Low)</div>
+                        <div class="filter-option" data-type="sort" data-value="revenue">Total Revenue</div>
                         <div class="filter-option" data-type="sort" data-value="trending">Trending (High CTR)</div>
                         <div class="filter-option" data-type="sort" data-value="worst">Underperforming</div>
-                        <div class="filter-option" data-type="sort" data-value="aov">Average Order Value (AOV)</div>
                         <div class="filter-option" data-type="sort" data-value="cpm">CPM (Efficiency)</div>
                     </div>
                 </div>
             </div>
 
-            <!-- New: Ad Metrics Columns Toggle -->
             <div class="toolbar-item" id="metrics-toggle">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20v-6M6 20V10M18 20V4"/></svg>
                 <span style="font-weight: 600; color: #ed0670;">Ad Metrics</span>
@@ -99,21 +97,26 @@ export function renderGallery(container) {
                 <div class="grid-header-row">
                     <div class="grid-header cell-checkbox"><input type="checkbox"></div>
                     <div class="grid-header cell-id"># I...</div>
-                    <div class="grid-header cell-status-label">Image Status</div>
-                    <div class="grid-header cell-avatar">Actor/Avatar</div>
-                    <div class="grid-header cell-platform">Social Platform</div>
+                    <div class="grid-header cell-status-label">Status</div>
+                    <div class="grid-header cell-avatar">Actor</div>
+                    <div class="grid-header cell-platform">Platform</div>
                     
-                    <!-- Performance Metrics Columns (Conditional) -->
-                    <div class="grid-header cell-performance">Meta Sentiment</div>
+                    <div class="grid-header cell-performance">Sentiment</div>
+                    <div class="grid-header cell-roas">ROAS</div>
+                    <div class="grid-header cell-spend">Spend</div>
+                    <div class="grid-header cell-revenue">Revenue</div>
                     <div class="grid-header cell-ctr">CTR %</div>
-                    <div class="grid-header cell-aov">AOV $</div>
                     <div class="grid-header cell-cpm">CPM $</div>
+                    <div class="grid-header cell-reach">Reach</div>
+                    <div class="grid-header cell-impressions">Impressions</div>
+                    <div class="grid-header cell-days">Days Running</div>
+                    <div class="grid-header cell-launch">Launch Date</div>
 
-                    <div class="grid-header cell-preview">Generated Image 1</div>
-                    <div class="grid-header cell-preview">Generated Image 2</div>
-                    <div class="grid-header cell-prompt">Video Prompt</div>
-                    <div class="grid-header cell-model">Video Eng...</div>
-                    <div class="grid-header cell-date">Created Date</div>
+                    <div class="grid-header cell-preview">Image 1</div>
+                    <div class="grid-header cell-preview">Image 2</div>
+                    <div class="grid-header cell-prompt">Prompt</div>
+                    <div class="grid-header cell-model">Model</div>
+                    <div class="grid-header cell-date">Created</div>
                 </div>
                 <div id="grid-content">
                     <div style="padding: 40px; text-align: center; color: #6e6e6e; font-size: 12px;">Initializing Content Engine...</div>
@@ -171,27 +174,26 @@ function setupToolbar() {
 function applyFilters() {
     let results = [...galleryItems];
 
-    // 1. Filter
     if (activeFilters.avatar !== 'all') {
         results = results.filter(item => item.avatar === activeFilters.avatar);
     }
 
-    // 2. Sort
     results.sort((a, b) => {
-        const m_a = a.metrics || { ctr: 0, aov: 0, cpm: 99 };
-        const m_b = b.metrics || { ctr: 0, aov: 0, cpm: 99 };
+        const m_a = a.metrics || { ctr: 0, roas: 0, spend: 0, revenue: 0, cpm: 99 };
+        const m_b = b.metrics || { ctr: 0, roas: 0, spend: 0, revenue: 0, cpm: 99 };
 
         switch (activeFilters.sort) {
+            case 'roas': return m_b.roas - m_a.roas;
+            case 'spend': return m_b.spend - m_a.spend;
+            case 'revenue': return m_b.revenue - m_a.revenue;
             case 'trending': return m_b.ctr - m_a.ctr;
             case 'worst': return m_a.ctr - m_b.ctr;
-            case 'aov': return m_b.aov - m_a.aov;
             case 'cpm': return m_a.cpm - m_b.cpm;
             case 'date': 
             default: return b.id - a.id;
         }
     });
 
-    // 3. Render (Includes grouping logic)
     renderGridRows(results);
 }
 
@@ -209,11 +211,10 @@ function renderGridRows(items) {
     if (!content) return;
     
     if (items.length === 0) {
-        content.innerHTML = '<div style="padding: 40px; text-align: center; color: #6e6e6e; font-size: 12px;">No records found in content engine.</div>';
+        content.innerHTML = '<div style="padding: 40px; text-align: center; color: #6e6e6e; font-size: 12px;">No records found.</div>';
         return;
     }
 
-    // Check for grouping
     if (activeFilters.group !== 'none') {
         const groups = {};
         items.forEach(item => {
@@ -225,8 +226,8 @@ function renderGridRows(items) {
         content.innerHTML = Object.entries(groups).map(([groupName, groupItems]) => {
             return `
                 <div class="grid-group-header">
-                    <div class="grid-cell" style="grid-column: 1 / -1; width: 2800px;">
-                        ${activeFilters.group.toUpperCase()}: ${groupName} (${groupItems.length} records)
+                    <div class="grid-cell" style="grid-column: 1 / -1; width: 4000px;">
+                        ${activeFilters.group.toUpperCase()}: ${groupName} (${groupItems.length})
                     </div>
                 </div>
                 ${groupItems.map((item, idx) => renderRowHtml(item, idx, groupItems.length)).join('')}
@@ -244,22 +245,32 @@ function renderRowHtml(item, index, total) {
     const metrics = item.metrics || {};
     const perfClass = metrics.performance === 'trending' ? 'pill-trending' : 'pill-underperforming';
     const dateStr = item.timestamp ? new Date(item.timestamp).toLocaleDateString() : 'Mar 21, 2026';
+    
+    // Launch Date and Days Running
+    const launchDate = metrics.launch_date ? new Date(metrics.launch_date) : new Date(item.timestamp);
+    const launchStr = launchDate.toLocaleDateString();
+    const daysRunning = Math.floor((new Date() - launchDate) / (1000 * 60 * 60 * 24));
 
     return `
         <div class="grid-row" data-id="${item.id}">
             <div class="grid-cell cell-checkbox"><input type="checkbox"></div>
             <div class="grid-cell cell-id">${total - index}</div>
-            <div class="grid-cell cell-status-label"><span class="status-pill pill-ready">Generated</span></div>
+            <div class="grid-cell cell-status-label"><span class="status-pill pill-ready">Live</span></div>
             <div class="grid-cell cell-avatar"><span class="avatar-pill pill-blue">${item.avatar || 'Nora'}</span></div>
             <div class="grid-cell cell-platform"><span class="platform-pill pill-dark">${item.platform || 'Meta'}</span></div>
             
-            <!-- Performance Metrics Cells -->
             <div class="grid-cell cell-performance">
-                <span class="status-pill ${perfClass}">${metrics.performance === 'trending' ? 'Trending' : 'Underperforming'}</span>
+                <span class="status-pill ${perfClass}">${metrics.performance === 'trending' ? 'Trending' : 'Scaling'}</span>
             </div>
+            <div class="grid-cell cell-roas"><span class="metric-value" style="color: #85ebad">${metrics.roas}x</span></div>
+            <div class="grid-cell cell-spend"><span class="metric-value">$${Number(metrics.spend).toLocaleString()}</span></div>
+            <div class="grid-cell cell-revenue"><span class="metric-value">$${Number(metrics.revenue).toLocaleString()}</span></div>
             <div class="grid-cell cell-ctr"><span class="metric-value">${metrics.ctr}%</span></div>
-            <div class="grid-cell cell-aov"><span class="metric-value">$${metrics.aov}</span></div>
             <div class="grid-cell cell-cpm"><span class="metric-value">$${metrics.cpm}</span></div>
+            <div class="grid-cell cell-reach"><span class="metric-value">${Number(metrics.reach).toLocaleString()}</span></div>
+            <div class="grid-cell cell-impressions"><span class="metric-value">${Number(metrics.impressions).toLocaleString()}</span></div>
+            <div class="grid-cell cell-days"><span class="metric-value">${daysRunning}d</span></div>
+            <div class="grid-cell cell-launch">${launchStr}</div>
 
             <div class="grid-cell cell-preview">
                 <div class="large-preview preview-trigger" data-url="${item.imageUrl}" data-video="${isVideo}">
